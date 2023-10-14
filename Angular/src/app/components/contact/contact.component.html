@@ -1,0 +1,52 @@
+<section id="content" *ngIf="contact">
+
+    <h2 class="subheader">CONTACTO</h2>
+
+    <table id="tabla_contacto" class="center">
+
+        <tr>
+            <th>Nombre</th>
+            <td>{{contact.nombre}}</td>
+        </tr>
+
+        <tr>
+            <th>Apellidos</th>
+            <td>{{contact.apellidos}}</td>
+        </tr>
+        <tr>
+            <th>Móvil</th>
+            <td>{{contact.movil}}</td>
+        </tr>
+        <tr>
+            <th>Dirección</th>
+            <td>{{contact.direccion}}</td>
+        </tr>
+        <tr>
+            <th>Población</th>
+            <td>{{contact.poblacion}}</td>
+        </tr>
+        <tr>
+            <th>Código Postal</th>
+            <td>{{contact.c_postal}}</td>
+        </tr>
+        <tr>
+            <th>Provincia</th>
+            <td>{{contact.provincia}}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{contact.email}}</td>
+        </tr>
+        <tr>
+            <th>Fecha Nacimiento</th>
+            <td>{{contact.f_nacimiento | date:'dd/MM/yyyy'}}</td>
+        </tr>
+
+    </table>
+
+        <div class="buttons">
+            <a [routerLink]="['/contacto/editar', contact._id]" class="btn btn-warning">Editar</a>
+            <a (click)="delete(contact._id)" class="btn btn-danger">Borrar</a>
+        </div>
+
+</section>

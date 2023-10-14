@@ -1,0 +1,30 @@
+<section id="content">
+
+    <h2 class="subheader">CONTACTOS</h2>
+    <!-- Listado de contactos-->
+
+    <table id="tabla_contactos" class="center">
+
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Detalles</th>
+        </tr>
+
+        <tr *ngFor="let contact of contacts | paginate: { itemsPerPage: 10, currentPage: page }; index as i" [ngClass]="i%2 == 0 ? 'fila-par' : 'fila-impar'">
+            <td>{{contact.nombre}}</td>
+            <td>{{contact.apellidos}}</td>
+            <td class="bottom-right-corner"><a [routerLink]="['/contacto', contact._id]">Ver</a></td>
+        </tr>
+    </table>
+
+    <pagination-controls
+        class="pagination"
+        (pageChange)="page = $event"
+        [autoHide]="true"
+        previousLabel="<"
+        nextLabel=">"
+    >
+    </pagination-controls>
+
+</section>

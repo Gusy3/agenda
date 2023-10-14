@@ -1,0 +1,26 @@
+<section id="content">
+
+    <h2 class="subheader">PRÓXIMOS CUMPLEAÑOS</h2>
+    
+    <div *ngIf="!cumpleanyeros || cumpleanyeros.length==0">
+
+        No hay ningún cumpleaños en los próximos 15 días
+
+    </div>
+
+    <div *ngIf="cumpleanyeros">
+        <table id="cumpleanos" class="center" *ngFor="let cumpleanyero of cumpleanyeros | paginate: { itemsPerPage: 5, currentPage: page }">
+            <tr>
+                <td rowspan="2" class="tarta"><img src="https://previews.123rf.com/images/damedeeso/damedeeso1505/damedeeso150500056/39896898-pastel-de-cumplea%C3%B1os-feliz-o-tarta-con-letras-feliz-cumplea%C3%B1os-como-velas-muy-coloridos-y-mirando-mu.jpg" class="img-tarta" /></td>
+                <th><a [routerLink]="['/contacto', cumpleanyero._id]">{{cumpleanyero.nombre}} {{cumpleanyero.apellidos}}</a></th>
+            </tr>
+            <tr>
+                <td *ngIf="cumpleanyero.dias!=0">En {{cumpleanyero.dias}} dia(s) cumplirá {{cumpleanyero.edad}} años</td>
+                <td *ngIf="cumpleanyero.dias==0">Hoy es su cumpleaños, cumple {{cumpleanyero.edad}} años</td>
+            </tr>
+        </table>
+    </div>
+
+    <pagination-controls class="pagination" (pageChange)="page = $event" [autoHide]="true" [directionLinks]="false"></pagination-controls>
+
+</section>

@@ -1,0 +1,24 @@
+<aside id="sidebar">
+
+    <div id="nav-blog" class="sidebar-item">
+        <h3>Puedes hacer esto</h3>
+        <a [routerLink]="['/nuevo-contacto']" class="btn btn-success">Añadir contacto</a>
+    </div>
+
+    <div id="search" class="sidebar-item">
+        <h3>Buscador</h3>
+        <p>Encuentra al contacto que buscas</p>
+        <form #searchForm="ngForm" (ngSubmit)="goSearch()">
+            <div class="form-group">
+                <label for="title">Nombre</label>
+                <input type="text" name="nombre" [(ngModel)]="searchNombre" />
+            </div>
+            <div class="form-group">
+                <label for="title">Apellidos</label>
+                <input type="text" name="apellidos" [(ngModel)]="searchApellidos" />
+            </div>
+            <input type="submit" name="submit" value="Buscar" class="btn btn-success"/>
+        </form>
+    </div>
+
+</aside>

@@ -1,0 +1,71 @@
+<section id="content">
+
+    <h1 class="subheader">{{page_title}}</h1>
+
+    <form class="mid-form" #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()" novalidate>
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="contact.nombre" required/>
+            <small class="msg-validator" *ngIf="!nombre.valid && (nombre.dirty || nombre.touched || contactForm.submitted)">El nombre es requerido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="contact.apellidos" required/>
+            <small class="msg-validator" *ngIf="!apellidos.valid && (apellidos.dirty || apellidos.touched || contactForm.submitted)">Los apellidos son requeridos</small>
+        </div>
+
+        <div class="form-group">
+            <label for="movil">Móvil</label>
+            <input type="tel" name="movil" #movil="ngModel" [(ngModel)]="contact.movil" pattern="[6|7]{1}[0-9]{8}" required/>
+            <small class="msg-validator" *ngIf="!movil.valid && (movil.dirty || movil.touched || contactForm.submitted)">El número de móvil no es válido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" [(ngModel)]="contact.direccion" />
+        </div>
+
+        <div class="form-group">
+            <label for="poblacion">Población</label>
+            <input type="text" name="poblacion" [(ngModel)]="contact.poblacion" />
+        </div>
+
+        <div class="form-group">
+            <label for="c_postal">Código Postal</label>
+            <input type="text" name="c_postal" #c_postal="ngModel" [(ngModel)]="contact.c_postal" pattern="^(5[0-2]{1}|[0-4]{1}\d{1})\d{3}$" ngRequired/>
+            <small class="msg-validator" *ngIf="!c_postal.valid && (c_postal.dirty || c_postal.touched || contactForm.submitted)">El código postal no es válido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="provincia" >Provincia</label>
+            <select name="provincia" [(ngModel)]="contact.provincia">
+                <option value="">----- Selecciona Provincia -----</option>
+                <option *ngFor="let province of provinces">{{province.nombre}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="contact.email"
+                   pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
+            />
+            <small class="msg-validator" *ngIf="!email.valid && (email.dirty || email.touched || contactForm.submitted)">El email no es válido</small>
+        </div>
+
+        <div class="form-group">
+            <label for="f_nacimiento">Fecha Nacimiento</label>
+            <input type="date" name="f_nacimiento" #f_nacimiento="ngModel" [ngModel]="contact.f_nacimiento | date: 'YYYY-MM-dd'" (ngModelChange)="contact.f_nacimiento = $event"
+                [max]="today | date: 'YYYY-MM-dd'" required />
+            <small class="msg-validator" *ngIf="!f_nacimiento.valid && (f_nacimiento.dirty || f_nacimiento.touched || contactForm.submitted)">La Fecha de Nacimiento no es válida</small>
+        </div>
+
+        <!-- LIMPIAR FLOTADOS -->
+        <div class="clearfix"></div>
+
+        <input type="submit" value="Guardar" class="btn btn-success" />
+
+    </form>
+
+  </section>
